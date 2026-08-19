@@ -14,7 +14,9 @@ hl.on("hyprland.start", function ()
   hl.exec_cmd("hyprpaper")
   hl.exec_cmd("waybar")
 
-  -- clipboard-history daemon
+  -- Clipboard-history daemon
   hl.exec_cmd("wl-paste --watch cliphist store")
+  -- Listens for events, applies the relevant monitor configuration, and triggers a workspace re-pin.
+  hl.exec_cmd("python3 " .. os.getenv("HOME") .. "/.config/hypr/scripts/monitors_switcher.py")
 end)
 

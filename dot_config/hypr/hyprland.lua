@@ -17,6 +17,7 @@ require("main.animations")
 require("main.layouts")
 require("main.misc")
 require("main.input")
+require("main.power")
 require("main.keybinds")
 require("main.windowrules")
 

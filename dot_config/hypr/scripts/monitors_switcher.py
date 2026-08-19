@@ -22,6 +22,9 @@ MONITOR_EVENTS = (
     'monitorremovedv2',
 )
 DEBOUNCE = 0.5
+# Give monique's monitor changes a moment to land before re-pinning workspaces.
+SETTLE_DELAY = 0.3
+WORKSPACES_EVAL = 'return require("main.workspaces").apply()'
 RECV_TIMEOUT = 0.5
 CONNECT_RETRIES = 10
 CONNECT_DELAY = 0.5
@@ -91,6 +94,18 @@ def apply_profile(name):
               file=sys.stderr, flush=True)
 
 
+def apply_workspaces():
+    """Re-pin workspaces onto whatever monitors are enabled now."""
+    result = subprocess.run(
+        ["hyprctl", "eval", WORKSPACES_EVAL],
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        print(f"hyprctl eval failed ({result.returncode}): {result.stderr.strip()}",
+              file=sys.stderr, flush=True)
+
+
 def evaluate():
     monitors = get_monitors()
     if monitors is None:
@@ -101,6 +116,9 @@ def evaluate():
         return
 
     apply_profile(profile)
+
+    time.sleep(SETTLE_DELAY)
+    apply_workspaces()
 
 
 def connect(path):

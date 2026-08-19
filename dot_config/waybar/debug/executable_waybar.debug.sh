@@ -1,0 +1,11 @@
+# Helping script to restart the waybar process on the config changes.
+
+CONFIG_FILES="$HOME/.config/waybar $HOME/.config/waybar/style.css"
+
+trap "killall waybar" EXIT
+
+while true; do
+    waybar &
+    inotifywait -e create,modify $CONFIG_FILES
+    killall waybar
+done

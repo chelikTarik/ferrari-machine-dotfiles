@@ -1,0 +1,140 @@
+{
+	"include": [
+		"~/.config/waybar/modules/**/*.jsonc"
+	],
+
+    "reload_style_on_change": true,
+    "layer": "top",
+    "position": "top",
+    "height": 8,
+    "spacing": 4,
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+       "clock",
+        "tray",
+        "wireplumber",
+        "network",
+        "bluetooth",
+        "battery",
+        "power-profiles-daemon",
+        "backlight",
+        "hyprland/language"
+    ],
+    "modules-right": [
+        "cpu",
+        "memory",
+        "custom/power_menu"
+    ],
+    "hyprland/workspaces" : {
+        "format" : "{icon}",
+        "format-icons": {
+            "default":""   
+        },
+        "active-only": false,
+        "on-click": "activate"
+    },
+    "tray": {
+        "spacing": 10
+    },
+        "clock": {
+        "format": "{:%H:%M}",
+        "format-alt": "{:%Y-%m-%d}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+                    "mode"          : "months",
+                    "mode-mon-col"  : 3,
+                    "weeks-pos"     : "right",
+                    "on-scroll"     : 1,
+                    "format": {
+                              "months":     "<span color='#ffead3'><b>{}</b></span>",
+                              "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                              "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                              "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                              "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                              }
+                    },
+        "actions":  {
+                    // "on-click-right": "mode",
+                    "on-scroll-up": "tz_up",
+                    "on-scroll-down": "tz_down",
+                    "on-scroll-up": "shift_up",
+                    "on-scroll-down": "shift_down"
+                    },
+        "on-click-right": "kitty --class modal calcurse"
+    },
+    "wireplumber": {
+        "format": "{volume}%",
+        "format-muted": "",
+        "on-click": "pwvucontrol",
+        "max-volume": 100,
+        "scroll-step": 1
+    },
+    "network" : {
+        "tooltip": true,
+        "format-wifi": " ",
+        "rotate": 0,
+        "format-ethernet": "󰈀 ",
+        "tooltip-format": "Network: <big><b>{essid}</b></big>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>",
+        "format-linked": "󰈀 {ifname} (No IP)",
+        "format-disconnected": "󰖪 ",
+        "tooltip-format-disconnected": "Disconnected",
+        "interval": 2,
+        "on-click": "kitty -e impala"
+    },
+    "bluetooth": {
+		"format": " {status}",
+		"format-disabled": "",
+		"format-connected": " {num_connections}",
+		"tooltip-format": "{controller_alias}\t{controller_address}",
+		"tooltip-format-connected": "{device_enumerate}",
+		"tooltip-format-enumerate-connected": "{device_alias}\t{device_battery_percentage}%",
+        "on-click": "kitty -e bluetui"
+    },
+"battery": {
+    "bat": "BAT0",
+    "interval": 60,
+    "format": "{capacity}% {icon}",
+    "format-icons": {
+        "default": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "charging": ["󰢟", "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"]
+    },
+        "states": {
+        "warning": 30,
+        "critical": 15
+    },
+},
+"power-profiles-daemon": {
+  "format": "{icon}",
+  "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+  "tooltip": true,
+  "format-icons": {
+    "default": "",
+    "performance": "",
+    "balanced": "",
+    "power-saver": ""
+  }
+},
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "min-length": 6
+    },
+    "cpu": {
+    "interval": 10,
+    "format": "{}% ",
+    "max-length": 10
+},
+"memory": {
+    "interval": 30,
+    "format": "{}% ",
+    "max-length": 10
+},
+"hyprland/language": {
+"format": "{}",
+"format-uk": "UA",
+"format-en": "US",
+},
+}

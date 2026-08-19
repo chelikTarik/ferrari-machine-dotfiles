@@ -1,0 +1,19 @@
+
+#workspaces button {
+    margin: 0;
+    padding: 0;
+    padding-right: 3px;
+    color: @ws-btn-default;
+    animation: ws_normal 20s ease-in-out 1;
+}
+
+#workspaces button.active {
+    color: @ws-btn-active;
+    animation: ws_active 20s ease-in-out 1;
+}
+
+#workspaces button:hover {
+    color: @ws-btn-active;
+    animation: ws_hover 20s ease-in-out 1;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}

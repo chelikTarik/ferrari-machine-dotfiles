@@ -1,0 +1,24 @@
+@import "styles/variables.css";
+@import "styles/reset.css";
+* {
+    border: none;
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+    font-size: 16px;
+    min-height: 0;
+}
+
+window#waybar {
+    margin: 0;
+    padding: 0;
+    background: @bar-bg;
+}
+
+.modules-left {
+    padding-left: 10px;
+}
+.modules-right {
+    padding-right: 10px;
+}
+
+@import "styles/components/workspaces.css";
